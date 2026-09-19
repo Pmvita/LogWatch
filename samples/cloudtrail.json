@@ -1,0 +1,86 @@
+{
+  "Records": [
+    {
+      "eventVersion": "1.08",
+      "eventTime": "2026-03-01T14:00:00Z",
+      "eventSource": "signin.amazonaws.com",
+      "eventName": "ConsoleLogin",
+      "eventID": "ct-login-ok-mfa",
+      "awsRegion": "ca-central-1",
+      "sourceIPAddress": "203.0.113.10",
+      "userIdentity": {
+        "type": "IAMUser",
+        "userName": "jordan"
+      },
+      "responseElements": {
+        "ConsoleLogin": "Success"
+      },
+      "additionalEventData": {
+        "MFAUsed": "Yes"
+      }
+    },
+    {
+      "eventVersion": "1.08",
+      "eventTime": "2026-03-01T14:05:00Z",
+      "eventSource": "signin.amazonaws.com",
+      "eventName": "ConsoleLogin",
+      "eventID": "ct-login-no-mfa",
+      "awsRegion": "ca-central-1",
+      "sourceIPAddress": "198.51.100.44",
+      "userIdentity": {
+        "type": "IAMUser",
+        "userName": "alex"
+      },
+      "responseElements": {
+        "ConsoleLogin": "Success"
+      },
+      "additionalEventData": {
+        "MFAUsed": "No"
+      }
+    },
+    {
+      "eventVersion": "1.08",
+      "eventTime": "2026-03-01T14:12:00Z",
+      "eventSource": "ec2.amazonaws.com",
+      "eventName": "AuthorizeSecurityGroupIngress",
+      "eventID": "ct-sg-open",
+      "awsRegion": "ca-central-1",
+      "sourceIPAddress": "198.51.100.44",
+      "userIdentity": {
+        "type": "IAMUser",
+        "userName": "alex"
+      },
+      "requestParameters": {
+        "groupId": "sg-0demo12",
+        "ipPermissions": {
+          "items": [
+            {
+              "ipProtocol": "tcp",
+              "fromPort": 22,
+              "toPort": 22,
+              "ipRanges": {
+                "items": [{ "cidrIp": "0.0.0.0/0" }]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "eventVersion": "1.08",
+      "eventTime": "2026-03-01T14:20:00Z",
+      "eventSource": "s3.amazonaws.com",
+      "eventName": "GetObject",
+      "eventID": "ct-benign-get",
+      "awsRegion": "ca-central-1",
+      "sourceIPAddress": "203.0.113.10",
+      "userIdentity": {
+        "type": "IAMUser",
+        "userName": "jordan"
+      },
+      "requestParameters": {
+        "bucketName": "demo-private-logs"
+      }
+    }
+  ]
+}

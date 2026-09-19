@@ -1,0 +1,52 @@
+{
+  "events": [
+    {
+      "EventID": 4624,
+      "RecordId": "win-ok",
+      "TimeCreated": "2026-03-01T15:00:00Z",
+      "TargetUserName": "jordan",
+      "IpAddress": "203.0.113.10",
+      "WorkstationName": "WS-01"
+    },
+    {
+      "EventID": 4625,
+      "RecordId": "win-fail-1",
+      "TimeCreated": "2026-03-01T15:01:00Z",
+      "TargetUserName": "admin",
+      "IpAddress": "198.51.100.80",
+      "WorkstationName": "WS-01"
+    },
+    {
+      "EventID": 4625,
+      "RecordId": "win-fail-2",
+      "TimeCreated": "2026-03-01T15:01:20Z",
+      "TargetUserName": "admin",
+      "IpAddress": "198.51.100.80",
+      "WorkstationName": "WS-01"
+    },
+    {
+      "EventID": 4625,
+      "RecordId": "win-fail-3",
+      "TimeCreated": "2026-03-01T15:01:40Z",
+      "TargetUserName": "admin",
+      "IpAddress": "198.51.100.80",
+      "WorkstationName": "WS-01"
+    },
+    {
+      "EventID": 4625,
+      "RecordId": "win-fail-4",
+      "TimeCreated": "2026-03-01T15:02:00Z",
+      "TargetUserName": "admin",
+      "IpAddress": "198.51.100.80",
+      "WorkstationName": "WS-01"
+    },
+    {
+      "EventID": 4625,
+      "RecordId": "win-fail-5",
+      "TimeCreated": "2026-03-01T15:02:20Z",
+      "TargetUserName": "admin",
+      "IpAddress": "198.51.100.80",
+      "WorkstationName": "WS-01"
+    }
+  ]
+}
