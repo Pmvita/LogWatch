@@ -8,6 +8,8 @@ Sample CloudTrail or Windows Security events in. A few detections fire. You get 
 ![Vitest](https://img.shields.io/badge/Tests-Vitest-6E9F18?logo=vitest&logoColor=white)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
+**Live:** [www.pierre-mvita.dev](https://www.pierre-mvita.dev)
+
 ---
 
 **Spec version:** 1.0 - 2026-09-18 (same version as `[TODO.md](./TODO.md)`)
@@ -32,9 +34,7 @@ A security lab for **triage**. Sample logs in, detections fire, markdown inciden
 
 ## Default cost
 
-$
-
-1. All local.
+$0. All local.
 
 
 
