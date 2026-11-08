@@ -25,7 +25,7 @@ A security lab for **triage**. Sample logs in, detections fire, markdown inciden
 ## Locked scope
 
 - Inputs: CloudTrail `Records` JSON, or Windows Security events JSON
-- Detections: console login without MFA, security group opened to `0.0.0.0/0`, failed-logon burst (5+ in 10 minutes)
+- Detections (six): no-MFA console login, SG opened to `0.0.0.0/0`, failed-logon burst, root login, suspicious IAM, CloudTrail brute-force
 - Output: markdown incident note (stdout, optional `--out`)
 - Tests: Vitest, no live AWS
 - No SIEM product, no auth, no auto-remediation
@@ -41,14 +41,14 @@ $0. All local.
 ## Tech stack
 
 
-| Layer      | Technology                         | Purpose                                          |
-| ---------- | ---------------------------------- | ------------------------------------------------ |
-| Runtime    | Node.js + TypeScript               | Run detections and the CLI on Windows            |
-| Runner     | tsx                                | `npm run triage` without a separate build        |
-| Input      | CloudTrail / Windows Security JSON | Bundled samples in `samples/`                    |
-| Detections | TypeScript rule functions          | No-MFA login, SG `0.0.0.0/0`, failed-logon burst |
-| Output     | Markdown                           | Incident note to stdout or `--out`               |
-| Tests      | Vitest                             | Rules + report, no live AWS                      |
+| Layer      | Technology                         | Purpose                                                          |
+| ---------- | ---------------------------------- | ---------------------------------------------------------------- |
+| Runtime    | Node.js + TypeScript               | Run detections and the CLI on Windows                            |
+| Runner     | tsx                                | `npm run triage` / `npx logwatch` without a separate build       |
+| Input      | CloudTrail / Windows Security JSON | Bundled samples in `samples/`                                    |
+| Detections | Six TypeScript rule functions      | See [Detections](#detections)                                    |
+| Output     | Markdown                           | Incident note to stdout or `--out`                               |
+| Tests      | Vitest                             | Rules + report, no live AWS                                      |
 
 
 
@@ -76,26 +76,42 @@ sample JSON ──► normalize ──► rules ──► incident note
 
 
 
-## Getting started
+## Install & run
 
 ```bash
-cd Logwatch
+git clone https://github.com/Pmvita/LogWatch.git
+cd LogWatch
 npm install
 npm test
+```
+
+Triage a bundled sample (prints a markdown incident note):
+
+```bash
 npm run triage
+# same as: npx tsx src/cli.ts samples/cloudtrail.json
+```
+
+Windows Security sample + write to disk:
+
+```bash
 npm run triage -- samples/windows-security.json --out reports/incident.md
 ```
+
+Extra CloudTrail samples (`samples/cloudtrail-root-iam.json`, `samples/cloudtrail-bruteforce.json`) exercise the other rules. Golden notes: `reports/example-incident.md` (CloudTrail) and `reports/windows-example.md` (Windows 4625 burst).
 
 
 
 ## Project structure
 
 ```
+bin/         logwatch CLI entry
 samples/     bundled CloudTrail + Windows events
 src/load.ts  normalize either format
-src/rules/   the three detections
+src/rules/   six detection rules
 src/report.ts  markdown incident note
 src/cli.ts   file in, note out
+reports/     example incident note
 tests/       Vitest
 ```
 

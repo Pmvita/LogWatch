@@ -7,7 +7,7 @@ This checklist **is** the whole project. README = design; this file = build list
 **Locked scope:**
 
 - CloudTrail or Windows Security JSON in
-- Three rules: no-MFA console login, SG `0.0.0.0/0`, failed-logon burst
+- Six rules: no-MFA console login, SG `0.0.0.0/0`, failed-logon burst (Windows 4625 / CloudTrail failures), root login, suspicious IAM, CloudTrail brute-force
 - Markdown incident note
 - Vitest only — no live AWS
 
@@ -18,6 +18,7 @@ This checklist **is** the whole project. README = design; this file = build list
 - [x] package.json + TypeScript + Vitest
 - [x] MIT LICENSE
 - [x] `.gitignore` (node_modules, generated reports)
+- [x] `bin/logwatch.js` CLI entry + GitHub Actions CI
 
 ---
 
@@ -33,7 +34,10 @@ This checklist **is** the whole project. README = design; this file = build list
 
 - [x] `console-login-no-mfa`
 - [x] `sg-open-to-world`
-- [x] `failed-logon-burst` (5 in 10 minutes)
+- [x] `failed-logon-burst` (5 in 10 minutes; CloudTrail Failure or Windows 4625)
+- [x] `root-login`
+- [x] `suspicious-iam`
+- [x] `cloudtrail-brute-force`
 
 ---
 
@@ -41,10 +45,11 @@ This checklist **is** the whole project. README = design; this file = build list
 
 - [x] Markdown: summary, findings, timeline, IOCs, next steps
 - [x] CLI: path in, stdout / `--out`
+- [x] Example report under `reports/example-incident.md`
 
 ---
 
 ## 🧪 Tests
 
-- [x] Each rule
-- [x] Report contains the three sections a screener should see
+- [x] Each of the six rules
+- [x] Report contains the sections a screener should see
