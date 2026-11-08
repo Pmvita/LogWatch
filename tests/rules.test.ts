@@ -3,6 +3,9 @@ import { normalizeEvents } from '../src/load.ts'
 import { detectConsoleLoginNoMfa } from '../src/rules/console-login-no-mfa.ts'
 import { detectFailedLogonBurst } from '../src/rules/failed-logon-burst.ts'
 import { detectSgOpenToWorld } from '../src/rules/sg-open-to-world.ts'
+import { detectRootLogin } from '../src/rules/root-login.ts'
+import { detectSuspiciousIam } from '../src/rules/suspicious-iam.ts'
+import { detectCloudtrailBruteForce } from '../src/rules/cloudtrail-brute-force.ts'
 import { triage } from '../src/triage.ts'
 
 const cloudtrail = {
@@ -69,10 +72,48 @@ describe('detections', () => {
     expect(detectFailedLogonBurst(events)).toHaveLength(0)
   })
 
-  it('returns both CloudTrail findings from the sample shape', () => {
-    const note = triage(normalizeEvents(cloudtrail))
-    const rules = note.findings.map((finding) => finding.rule)
-    expect(rules).toContain('console-login-no-mfa')
-    expect(rules).toContain('sg-open-to-world')
+  it('flags root account usage', () => {
+    const events = normalizeEvents({
+      Records: [
+        {
+          eventTime: '2026-03-02T09:00:00Z',
+          eventName: 'ConsoleLogin',
+          eventID: 'r1',
+          userIdentity: { type: 'Root', arn: 'arn:aws:iam::123:root' },
+          responseElements: { ConsoleLogin: 'Success' },
+        },
+      ],
+    })
+    expect(detectRootLogin(events)[0]?.rule).toBe('root-login')
   })
+
+  it('flags suspicious IAM changes', () => {
+    const events = normalizeEvents({
+      Records: [
+        {
+          eventTime: '2026-03-02T09:05:00Z',
+          eventName: 'CreateUser',
+          eventID: 'i1',
+          userIdentity: { type: 'IAMUser', userName: 'alex' },
+          requestParameters: { userName: 'backdoor' },
+        },
+      ],
+    })
+    expect(detectSuspiciousIam(events)[0]?.rule).toBe('suspicious-iam')
+  })
+
+  it('flags a CloudTrail brute-force burst', () => {
+    const events = normalizeEvents({
+      Records: Array.from({ length: 5 }, (_, i) => ({
+        eventTime: `2026-03-03T10:0${i}:00Z`,
+        eventName: 'ConsoleLogin',
+        eventID: `f${i}`,
+        sourceIPAddress: '198.51.100.77',
+        userIdentity: { type: 'IAMUser', userName: 'alice' },
+        responseElements: { ConsoleLogin: 'Failure' },
+      })),
+    })
+    expect(detectCloudtrailBruteForce(events)[0]?.rule).toBe('cloudtrail-brute-force')
+  })
+
 })

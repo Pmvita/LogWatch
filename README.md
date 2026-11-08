@@ -69,6 +69,9 @@ sample JSON ──► normalize ──► rules ──► incident note
 | `console-login-no-mfa` | HIGH     | CloudTrail `ConsoleLogin` success and MFA was not used                                                      |
 | `sg-open-to-world`     | HIGH     | `AuthorizeSecurityGroupIngress` allows `0.0.0.0/0`                                                          |
 | `failed-logon-burst`   | MEDIUM   | 5+ failed logons (CloudTrail `ConsoleLogin` Failure or Windows 4625) from the same user or IP in 10 minutes |
+| `root-login`           | HIGH     | Any CloudTrail event performed by the root account                                                          |
+| `suspicious-iam`       | HIGH     | Suspicious IAM/account changes (CreateUser, CreateAccessKey, AttachUserPolicy, etc.)                        |
+| `cloudtrail-brute-force` | MEDIUM | 5+ failed CloudTrail `ConsoleLogin` attempts from the same IP or user in 10 minutes                        |
 
 
 

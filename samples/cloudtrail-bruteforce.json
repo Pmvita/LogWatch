@@ -1,0 +1,59 @@
+{
+  "Records": [
+    {
+      "eventVersion": "1.08",
+      "eventTime": "2026-03-03T10:00:00Z",
+      "eventSource": "signin.amazonaws.com",
+      "eventName": "ConsoleLogin",
+      "eventID": "ct-fail-1",
+      "awsRegion": "ca-central-1",
+      "sourceIPAddress": "198.51.100.77",
+      "userIdentity": { "type": "IAMUser", "userName": "alice" },
+      "responseElements": { "ConsoleLogin": "Failure" }
+    },
+    {
+      "eventVersion": "1.08",
+      "eventTime": "2026-03-03T10:00:20Z",
+      "eventSource": "signin.amazonaws.com",
+      "eventName": "ConsoleLogin",
+      "eventID": "ct-fail-2",
+      "awsRegion": "ca-central-1",
+      "sourceIPAddress": "198.51.100.77",
+      "userIdentity": { "type": "IAMUser", "userName": "bob" },
+      "responseElements": { "ConsoleLogin": "Failure" }
+    },
+    {
+      "eventVersion": "1.08",
+      "eventTime": "2026-03-03T10:00:40Z",
+      "eventSource": "signin.amazonaws.com",
+      "eventName": "ConsoleLogin",
+      "eventID": "ct-fail-3",
+      "awsRegion": "ca-central-1",
+      "sourceIPAddress": "198.51.100.77",
+      "userIdentity": { "type": "IAMUser", "userName": "carol" },
+      "responseElements": { "ConsoleLogin": "Failure" }
+    },
+    {
+      "eventVersion": "1.08",
+      "eventTime": "2026-03-03T10:01:00Z",
+      "eventSource": "signin.amazonaws.com",
+      "eventName": "ConsoleLogin",
+      "eventID": "ct-fail-4",
+      "awsRegion": "ca-central-1",
+      "sourceIPAddress": "198.51.100.77",
+      "userIdentity": { "type": "IAMUser", "userName": "dave" },
+      "responseElements": { "ConsoleLogin": "Failure" }
+    },
+    {
+      "eventVersion": "1.08",
+      "eventTime": "2026-03-03T10:01:20Z",
+      "eventSource": "signin.amazonaws.com",
+      "eventName": "ConsoleLogin",
+      "eventID": "ct-fail-5",
+      "awsRegion": "ca-central-1",
+      "sourceIPAddress": "198.51.100.77",
+      "userIdentity": { "type": "IAMUser", "userName": "eve" },
+      "responseElements": { "ConsoleLogin": "Failure" }
+    }
+  ]
+}
