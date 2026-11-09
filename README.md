@@ -8,7 +8,7 @@ Sample CloudTrail or Windows Security events in. A few detections fire. You get 
 ![Vitest](https://img.shields.io/badge/Tests-Vitest-6E9F18?logo=vitest&logoColor=white)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
-**Live:** [www.pierre-mvita.dev](https://www.pierre-mvita.dev)
+**Live URL:** N/A (CLI tool). Portfolio home: [https://pierre-mvita.vercel.app](https://pierre-mvita.vercel.app)
 
 ---
 
